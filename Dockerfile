@@ -1,21 +1,18 @@
-# Use Python base image
-FROM python:3.9
+# Use the Python version from your runtime.txt
+FROM python:3.10-slim
 
+# Set the working directory in the container
 WORKDIR /app
 
-# Install OpenCV dependencies
-RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx \
-    libglib2.0-0 \
-    && rm -rf /var/lib/apt/lists/*
-
-COPY . .
-
-# Install required Python dependencies
+# Copy the requirements file and install dependencies
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose port 8080 for Render
+# Copy the rest of your application code
+COPY . .
+
+# Expose the port the app runs on
 EXPOSE 8080
 
-# Start the FastAPI app with Uvicorn
+# Command to run the app
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]
