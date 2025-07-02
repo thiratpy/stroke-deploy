@@ -11,7 +11,7 @@ import os
 
 # ✅ Load Pretrained HRNet Model (for facial landmark detection)
 hrnet_model_path = "hrnetv2_w18.pth"  # Path to HRNet model weights
-device = "cuda" if torch.cuda.is_available() else "cpu"
+device = "cpu"
 
 # Load HRNet Model
 hrnet_model = torch.hub.load("HRNet/HRNet", "hrnet_w18")
@@ -73,4 +73,3 @@ PORT = int(os.getenv("PORT", 8080))
 # ✅ Run Server
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=PORT)
-
