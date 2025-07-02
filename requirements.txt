@@ -1,11 +1,11 @@
 --extra-index-url https://download.pytorch.org/whl/cpu
 fastapi
 uvicorn
-torch
-torchvision
+torch==2.1.1
+torchvision==0.16.1
 numpy
 joblib
-opencv-python
+opencv-python-headless
 timm
 pandas
 scikit-learn
